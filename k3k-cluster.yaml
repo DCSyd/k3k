@@ -13,6 +13,9 @@ spec:
   serverArgs:
   - "--write-kubeconfig-mode=777"
   - "--disable=servicelb"
+  - "--disable=traefik"
+  - "--disable-cloud-controller"
+  - "--disable-network-policy
     #  expose:
     #ingress:
     #  enabled: true
