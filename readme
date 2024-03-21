@@ -13,4 +13,8 @@ Now deploy app and create service
   spec:
     loadBalancerClass: loxilb.io/loxilb
     type: LoadBalancer
+    ports:
+      - name: web
+        port: 8080 ### select the port to listen on host node IP
+      
 svc should have LBS IP now
