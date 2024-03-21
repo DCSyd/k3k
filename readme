@@ -1,6 +1,6 @@
-## Using host cluster Nodes IP for loadbalancing
+## Flannel CNI on host cluster (RKE2) is tested
 
-Deploy loxilb in host cluster -- loxilb-host-cluster.yaml 
+Deploy loxilb in host cluster -- #kubectl apply -f loxilb-ds-flannel.yaml 
 Identify IP Address/Ports to be used for loadbalanding 
 create k3k cluster #kubectl apply -f  k3k-clsuter.yaml
 Generate kubeconfig for k3k cluster
@@ -13,8 +13,5 @@ Now deploy app and create service
   spec:
     loadBalancerClass: loxilb.io/loxilb
     type: LoadBalancer
-    ports:
-      - name: web
-        port: 8080 ### select the port to listen on host node IP
       
 svc should have LBS IP now
