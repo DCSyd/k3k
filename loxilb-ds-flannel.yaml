@@ -33,9 +33,9 @@ spec:
       - name: loxilb-app
         image: "ghcr.io/loxilb-io/loxilb:latest"
         imagePullPolicy: Always
-        command: [ "/root/loxilb-io/loxilb/loxilb", "--fallback", "--bgp", "--egr-hooks"  ]  
+        #command: [ "/root/loxilb-io/loxilb/loxilb", "--fallback", "--bgp", "--egr-hooks"  ]  
         #command: [ "/root/loxilb-io/loxilb/loxilb", "--ipvs-compat", "--fallback", "--bgp", "--egr-hooks"  ]  
-        #command: [ "/root/loxilb-io/loxilb/loxilb", "--bgp", "--egr-hooks", "--blacklist=cali.|tunl.|vxlan[.]calico|veth.|cni[0-9a-z]" ]
+        command: [ "/root/loxilb-io/loxilb/loxilb", "--bgp", "--egr-hooks", "--blacklist=cali.|tunl.|vxlan[.]calico|veth.|cni[0-9a-z]" ]
         ports:
         - containerPort: 11111
         - containerPort: 179
