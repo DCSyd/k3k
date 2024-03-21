@@ -1,10 +1,16 @@
-Deploy loxilb in host cluster. 
-IP Address to be configured?? (to be checked)
-create k3k cluster #kubectl apply -f 
+## Using host cluster Nodes IP for loadbalancing
+
+Deploy loxilb in host cluster -- loxilb-host-cluster.yaml 
+Identify IP Address/Ports to be used for loadbalanding 
+create k3k cluster #kubectl apply -f  k3k-clsuter.yaml
 Generate kubeconfig for k3k cluster
   k3kcli kubeconfig generate --name test-cluster --kubeconfig ~/.kube/config
-Use k3k cluster kubeconfig and import to Rancher 
-Use k3k cluster kubeconfig and deploy kube-loxy
+Use k3k cluster kubeconfig and import to Rancher (Optional)
+Use k3k cluster kubeconfig and deploy kube-loxy 
+  kubectl apply -f kube-loxi-k3k.yaml
 Now deploy app and create service
   service spec with loadBalancerClass: loxilb.io/loxilb
+  spec:
+    loadBalancerClass: loxilb.io/loxilb
+    type: LoadBalancer
 svc should have LBS IP now
