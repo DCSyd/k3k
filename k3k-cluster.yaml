@@ -15,7 +15,7 @@ spec:
   - "--disable=servicelb"
   - "--disable=traefik"
   - "--disable-cloud-controller"
-  - "--disable-network-policy
+  - "--disable-network-policy"
     #  expose:
     #ingress:
     #  enabled: true
