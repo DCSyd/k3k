@@ -1,8 +1,8 @@
 ## Flannel CNI on host cluster (RKE2) is tested
 
 Deploy loxilb in host cluster -- #kubectl apply -f loxilb-ds-flannel.yaml 
-Identify IP Address/Ports to be used for loadbalanding 
-create k3k cluster #kubectl apply -f  k3k-clsuter.yaml
+Identify IP Address/Ports to be used for loadbalancing 
+create k3k cluster -- #kubectl apply -f  k3k-clsuter.yaml
 Generate kubeconfig for k3k cluster
   k3kcli kubeconfig generate --name test-cluster --kubeconfig ~/.kube/config
 Use k3k cluster kubeconfig and import to Rancher (Optional)
