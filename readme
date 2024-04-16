@@ -15,6 +15,7 @@ Now deploy app and create service
     type: LoadBalancer
       
 svc should have LBS IP now
+### further testing needed for Calico
 ### For RKE2 Host Cluster with Calico CNI, IPVS mode is required. Below to be added to Host cluster yaml (in Rancher GUI)
     machineGlobalConfig:
       cni: calico
