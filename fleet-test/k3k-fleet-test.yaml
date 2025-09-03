@@ -1,4 +1,4 @@
-apiVersion: k3k.io/v1alpha1
+apiVersion: management.cattle.io/v3
 kind: Cluster
 metadata:
   name: fleet-k3k-test
