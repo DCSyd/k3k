@@ -1,0 +1,27 @@
+apiVersion: k3k.io/v1alpha1
+kind: Cluster
+metadata:
+  name: fleet-k3k-test
+  annotations:
+    ui.rancher/k3k-namespace: k3k-fleet-k3k-test
+    ui.rancher/parent-cluster: c-m-btp84spm
+    ui.rancher/parent-cluster-display: baremetal-lab-bpf
+    ui.rancher/provider: k3k
+spec:
+  servers: 1
+#  agents: 1
+  mode: shared
+  version: v1.33.3-k3s1
+  clusterCIDR: 10.30.0.0/16
+  serviceCIDR: 10.31.0.0/16
+  clusterDNS: 10.30.0.10
+  serverArgs:
+  - "--write-kubeconfig-mode=777"
+#  - "--disable=servicelb"
+#  - "--disable=traefik"
+#  - "--disable-cloud-controller"
+#  - "--disable-network-policy"
+    #  expose:
+    #ingress:
+    #  enabled: true
+    #  ingressClassName: "nginx"
