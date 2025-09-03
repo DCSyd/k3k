@@ -4,18 +4,18 @@ metadata:
   name: test-cluster
 spec:
   servers: 1
-  agents: 1
-  token: test
-  version: v1.27.11-k3s1
+#  agents: 1
+  mode: shared
+  version: v1.33.3-k3s1
   clusterCIDR: 10.30.0.0/16
   serviceCIDR: 10.31.0.0/16
-    #clusterDNS: 10.30.0.10
+  clusterDNS: 10.30.0.10
   serverArgs:
   - "--write-kubeconfig-mode=777"
-  - "--disable=servicelb"
-  - "--disable=traefik"
-  - "--disable-cloud-controller"
-  - "--disable-network-policy"
+#  - "--disable=servicelb"
+#  - "--disable=traefik"
+#  - "--disable-cloud-controller"
+#  - "--disable-network-policy"
     #  expose:
     #ingress:
     #  enabled: true
