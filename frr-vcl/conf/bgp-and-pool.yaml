@@ -1,0 +1,27 @@
+apiVersion: frrk8s.metallb.io/v1beta1
+kind: FRRConfiguration
+metadata:
+  name: bgp-host-cl
+  namespace: frr-k8s
+spec:
+  bgp:
+    routers:
+      - asn: 64561
+        neighbors:
+          - address: 192.168.8.206
+            asn: 64560
+            ebgpMultiHop: true
+            toAdvertise:
+              allowed:
+                mode: all
+        prefixes:
+          - 10.10.61.0/24
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: lb-pool
+  namespace: metallb-system
+spec:
+  addresses:
+  - 10.10.61.0/24
