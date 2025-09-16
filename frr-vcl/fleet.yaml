@@ -10,24 +10,3 @@ helm:
     crds:
       enabled: true
 
----
-apiVersion: frrk8s.metallb.io/v1beta1
-kind: FRRConfiguration
-metadata:
-  name: bgp-host-cl
-  namespace: frr-k8s
-spec:
-  bgp:
-    routers:
-      - asn: 64518
-        neighbors:
-          - address: 192.168.8.170
-            asn: 64517
-            disableMP: false
-            dualStackAddressFamily: false
-            ebgpMultiHop: true
-            toAdvertise:
-              allowed:
-                mode: all
-        prefixes:
-          - 10.10.17.0/24
