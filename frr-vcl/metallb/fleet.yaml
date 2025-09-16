@@ -3,3 +3,7 @@ helm:
   releaseName: metallb
   repo: https://metallb.github.io/metallb
   chart: metallb
+  values: 
+    speaker:
+      frr:
+        enabled: false
