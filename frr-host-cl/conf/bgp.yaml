@@ -1,0 +1,57 @@
+---
+###BGP peering to virtual-cluster
+apiVersion: frrk8s.metallb.io/v1beta1
+kind: FRRConfiguration
+metadata:  name: k3k-cl1
+  namespace: frr-k8s
+spec:
+  bgp:
+    routers:
+      - asn: 64560
+        neighbors:
+          - address: 10.254.43.104
+            asn: 64561
+            ebgpMultiHop: true
+            toReceive:
+              allowed:
+                mode: filtered
+                prefixes:
+                  - prefix: 10.10.61.0/24
+---
+###BGP peering to virtual-router upstream or tenant
+apiVersion: frrk8s.metallb.io/v1beta1
+kind: FRRConfiguration
+metadata:
+  name: vrouter
+  namespace: frr-k8s
+spec:
+  bgp:
+    routers:
+      - asn: 64560
+        neighbors:
+          - address: 192.168.8.11
+            asn: 65530
+            toAdvertise:
+              allowed:
+                mode: filtered
+                prefixes:
+                  - 10.10.61.0/24
+            toReceive:
+              allowed:
+                mode: filtered
+        prefixes:
+          - 10.10.61.0/24
+---
+###update weight for route from virtual cluster to avoid the route become recurssive
+apiVersion: frrk8s.metallb.io/v1beta1
+kind: FRRConfiguration
+metadata:
+  name: k3k-cl1-weight
+  namespace: frr-k8s
+spec:
+  raw:
+    rawConfig: |-
+      router bgp 64560
+       address-family ipv4 unicast
+       neighbor 10.254.43.104 weight 65535
+                  
