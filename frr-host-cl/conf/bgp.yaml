@@ -2,7 +2,8 @@
 ###BGP peering to virtual-cluster
 apiVersion: frrk8s.metallb.io/v1beta1
 kind: FRRConfiguration
-metadata:  name: k3k-cl1
+metadata:  
+  name: k3k-cl1
   namespace: frr-k8s
 spec:
   bgp:
