@@ -7,6 +7,8 @@ helm:
     frrk8s:
       frr:
         acceptIncomingBGPConnections: true
+    crds:
+      enabled: true
 
 ---
 apiVersion: frrk8s.metallb.io/v1beta1
