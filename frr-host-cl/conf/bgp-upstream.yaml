@@ -1,0 +1,23 @@
+###BGP peering to virtual-router upstream or tenant
+apiVersion: frrk8s.metallb.io/v1beta1
+kind: FRRConfiguration
+metadata:
+  name: vrouter-upstream
+  namespace: frr-k8s
+spec:
+  bgp:
+    routers:
+      - asn: 64560
+        neighbors:
+          - address: 192.168.8.11
+            asn: 65530
+            toAdvertise:
+              allowed:
+                mode: filtered
+                prefixes:
+                  - 10.10.61.0/24
+            toReceive:
+              allowed:
+                mode: filtered
+        prefixes:
+          - 10.10.61.0/24
