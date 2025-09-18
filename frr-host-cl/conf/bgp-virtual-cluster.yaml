@@ -4,38 +4,38 @@
 apiVersion: frrk8s.metallb.io/v1beta1
 kind: FRRConfiguration
 metadata:
-  name: k3k-cl1-weight
+  name: k3k-peers
   namespace: frr-k8s
 spec:
   raw:
     rawConfig: |-
-      router bgp 64560
-        neighbor tenant1-peers peer-group
-        neighbor tenant1-peers remote-as 64561
-        neighbor tenant1-peers ebgp-multihop 
-        neighbor 10.254.43.106 peer-group tenant1-peers
-        neighbor 10.254.43.112 peer-group tenant1-peers 
-        neighbor 10.254.43.72 peer-group tenant1-peers
+      router bgp 64511
+        neighbor k3k-peers peer-group
+        neighbor k3k-peers remote-as 64512
+        neighbor k3k-peers ebgp-multihop
+        bgp listen range 10.42.0.0/16 peer-group k3k-peers
         !
       address-family ipv4 unicast
-        neighbor tenant1-peers activate
-        neighbor tenant1-peers weight 65535
+        neighbor k3k-peers activate
+        neighbor k3k-peers weight 65535
 ---
-###Load Balancer pool recieved from virtual-cluster
+###Load Balancer pool recieved from virtual-clusters
 apiVersion: frrk8s.metallb.io/v1beta1
 kind: FRRConfiguration
 metadata:  
-  name: k3k-cl1-routes-received
+  name: k3k-lbs-routes
   namespace: frr-k8s
 spec:
   bgp:
     routers:
-      - asn: 64560
+      - asn: 64511
         neighbors:
-          - asn: 64561
-            interface: tenant1-peers
+          - asn: 64512
+            interface: k3k-peers
             toReceive:
               allowed:
                 mode: filtered
                 prefixes:
-                  - prefix: 10.10.61.0/24
+                  - prefix: 10.10.12.0/28
+                  - prefix: 10.10.12.16/28
+                  - prefix: 10.10.12.32/27
